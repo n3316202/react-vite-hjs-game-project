@@ -7,7 +7,7 @@ const routes = [
     path: "/",
     element: <App />,
     loader: () => "로또",
-    Children: [
+    children: [
       {
         path: "/",
         loader: () => "로또",

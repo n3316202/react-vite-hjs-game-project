@@ -42,7 +42,7 @@ const Header = () => {
                         className="dropdown-menu"
                         aria-labelledby="navbarDropdown"
                       >
-                        {router.children.map((child) => (
+                        {route.children.map((child) => (
                           <li key={child.loader()}>
                             <Link to={child.path} className="dropdown-item">
                               {child.loader()}
