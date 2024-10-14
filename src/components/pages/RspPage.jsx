@@ -40,6 +40,18 @@ const RspPage = () => {
 
     //결과 스트링
     let result = getResult(e.target.innerText, rspArr[com_rsp]);
+
+    //화면갱신을 위한 설정
+    let copyPlayers = [...players];
+
+    copyPlayers[1].arrRsp = [result];
+    copyPlayers[2].arrRsp = [rspArr[com_rsp]];
+
+    //이미지 셋팅
+    copyPlayers[0].img = imgArr[user_rsp];
+    copyPlayers[2].img = imgArr[com_rsp];
+
+    setPlayers(copyPlayers);
   };
 
   function getResult(you, computer) {
