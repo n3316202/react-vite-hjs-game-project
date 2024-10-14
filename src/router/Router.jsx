@@ -3,6 +3,7 @@ import App from "./../App";
 import Footer from "../components/layout/Footer";
 import LottoBall from "../components/lotto/LottoBall";
 import LottoPage from "../components/pages/LottoPage";
+import RspPage from "../components/pages/RspPage";
 
 const routes = [
   {
@@ -13,7 +14,7 @@ const routes = [
       {
         path: "/",
         loader: () => "로또",
-        element: <LottoPage />,
+        element: <RspPage />,
       },
     ],
   },
