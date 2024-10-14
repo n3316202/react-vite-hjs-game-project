@@ -84,9 +84,10 @@ const RspPage = () => {
     <main>
       <div className="container mt-5">
         <div className="row">
-          <RspCard player={players[0]} onClick={handleClick}></RspCard>
-          <RspCard player={players[1]} onClick={handleClick}></RspCard>
-          <RspCard player={players[2]} onClick={handleClick}></RspCard>
+          {players &&
+            players.map((player) => (
+              <RspCard player={player} onClick={handleClick}></RspCard>
+            ))}
         </div>
       </div>
     </main>
