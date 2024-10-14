@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import RspCard from "./../rsp/RspCard";
 
+import rock from "../../assets/rsp/rock.jpg";
+import paper from "../../assets/rsp/paper.jpg";
+import scissor from "../../assets/rsp/scissor.jpg";
+
 const RspPage = () => {
   const [players, setPlayers] = useState([
     {
@@ -24,8 +28,45 @@ const RspPage = () => {
   ]);
 
   const handleClick = (e) => {
-    console.log("클릭 하였습니다.");
+    console.log(e.target.innerText);
+
+    const rspArr = ["가위", "바위", "보"];
+    const imgArr = [scissor, rock, paper]; //이미지 처리
+
+    //가위바위보 버튼을 누르면 숫자(0,1,2)숫자로 변환
+    let user_rsp = rspArr.indexOf(e.target.innerText);
+    //컴퓨터 램성 생성(0~2)
+    let com_rsp = Math.floor(Math.random() * 2);
+
+    //결과 스트링
+    let result = getResult(e.target.innerText, rspArr[com_rsp]);
   };
+
+  function getResult(you, computer) {
+    let result = "비겼습니다";
+
+    if (you == computer) return "비겼습니다";
+
+    if (you == "가위") {
+      if (computer == "바위") result = "당신이 졌습니다";
+
+      if (computer == "보") result = "당신이 이겼습니다.";
+    }
+
+    if (you == "바위") {
+      if (computer == "보") result = "당신이 졌습니다";
+
+      if (computer == "가위") result = "당신이 이겼습니다.";
+    }
+
+    if (you == "보") {
+      if (computer == "가위") result = "당신이 졌습니다";
+
+      if (computer == "바위") result = "당신이 이겼습니다.";
+    }
+
+    return result;
+  }
 
   return (
     <main>
