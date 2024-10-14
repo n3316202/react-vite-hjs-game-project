@@ -35,8 +35,9 @@ const RspPage = () => {
 
     //가위바위보 버튼을 누르면 숫자(0,1,2)숫자로 변환
     let user_rsp = rspArr.indexOf(e.target.innerText);
+
     //컴퓨터 램성 생성(0~2)
-    let com_rsp = Math.floor(Math.random() * 2);
+    let com_rsp = Math.floor(Math.random() * 3);
 
     //결과 스트링
     let result = getResult(e.target.innerText, rspArr[com_rsp]);
