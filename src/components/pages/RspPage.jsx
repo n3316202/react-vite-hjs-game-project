@@ -5,19 +5,19 @@ const RspPage = () => {
   const [players, setPlayers] = useState([
     {
       id: 1,
-      usename: "당신",
+      username: "당신",
       arrRsp: ["가위", "바위", "보"],
       img: "https://taegon.kim/wp-content/uploads/2018/05/image-5.png",
     },
     {
       id: 2,
-      usename: "심판",
+      username: "심판",
       arrRsp: [],
       img: "https://taegon.kim/wp-content/uploads/2018/05/image-5.png",
     },
     {
       id: 3,
-      usename: "컴퓨터",
+      username: "컴퓨터",
       arrRsp: ["랜덤생성"],
       img: "https://taegon.kim/wp-content/uploads/2018/05/image-5.png",
     },
@@ -28,6 +28,8 @@ const RspPage = () => {
       <div className="container mt-5">
         <div className="row">
           <RspCard player={players[0]}></RspCard>
+          <RspCard player={players[1]}></RspCard>
+          <RspCard player={players[2]}></RspCard>
         </div>
       </div>
     </main>
