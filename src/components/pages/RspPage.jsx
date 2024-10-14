@@ -23,13 +23,17 @@ const RspPage = () => {
     },
   ]);
 
+  const handleClick = (e) => {
+    console.log("클릭 하였습니다.");
+  };
+
   return (
     <main>
       <div className="container mt-5">
         <div className="row">
-          <RspCard player={players[0]}></RspCard>
-          <RspCard player={players[1]}></RspCard>
-          <RspCard player={players[2]}></RspCard>
+          <RspCard player={players[0]} onClick={handleClick}></RspCard>
+          <RspCard player={players[1]} onClick={handleClick}></RspCard>
+          <RspCard player={players[2]} onClick={handleClick}></RspCard>
         </div>
       </div>
     </main>
