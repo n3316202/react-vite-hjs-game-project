@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./../App";
 import LottoPage from "../components/pages/LottoPage";
 import RspPage from "../components/pages/RspPage";
+import BoardListPage from "../components/pages/BoardListPage";
 
 const routes = [
   {
@@ -25,6 +26,18 @@ const routes = [
         path: "/lotto",
         loader: () => "로또",
         element: <LottoPage />,
+      },
+    ],
+  },
+  {
+    path: "/boards",
+    element: <App />,
+    loader: () => "게시판",
+    children: [
+      {
+        path: "/boards",
+        loader: () => "게시판",
+        element: <BoardListPage />,
       },
     ],
   },
