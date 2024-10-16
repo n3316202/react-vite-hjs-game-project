@@ -1,23 +1,33 @@
 import React, { useEffect, useState } from "react";
 import boardService from "../../services/BoardService";
+import { Navigate } from "react-router-dom";
 
 const BoardWritePage = () => {
   const initBoardState = {
-    bname: "홍길동",
-    btitle: "안녕하세요",
-    bcontent: "안녕하세요",
+    bname: "",
+    btitle: "",
+    bcontent: "",
   };
 
   const [board, setBoard] = useState(initBoardState);
+
+  //redirect를 위한 처리
+
+  const [submitted, setSubmitted] = useState(false);
 
   //처음 랜더링 하고, 한번만 타라
   //useEffect(() => {
   //  saveBoard();
   //}, []);
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setBoard({ ...board, [name]: value });
+  };
+
   const saveBoard = () => {
     let data = {
-      banme: board.bname,
+      bname: board.bname,
       btitle: board.btitle,
       bcontent: board.bcontent,
     };
@@ -28,6 +38,7 @@ const BoardWritePage = () => {
       .write(data)
       .then((respose) => {
         console.log(respose);
+        setSubmitted(true);
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +47,9 @@ const BoardWritePage = () => {
     /* axios 글 저장 */
   };
 
-  return (
+  return submitted ? (
+    <Navigate to={{ pathname: "/boards" }} />
+  ) : (
     <div>
       <div className="container mt-3">
         <div className="container">
