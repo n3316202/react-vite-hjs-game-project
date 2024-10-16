@@ -10,7 +10,8 @@ const remove = (id) => {
 };
 
 const write = (data) => {
-  return http.post(`boards/`, data);
+  console.log(data);
+  return http.post("/boards/", data);
 };
 
 export default {
