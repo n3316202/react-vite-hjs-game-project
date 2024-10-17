@@ -39,17 +39,9 @@ const BoardUpdatePage = () => {
     setBoard({ ...board, [name]: value });
   };
 
-  const saveBoard = () => {
-    let data = {
-      bname: board.bname,
-      btitle: board.btitle,
-      bcontent: board.bcontent,
-    };
-
-    console.log(data);
-
+  const updateBoard = () => {
     boardService
-      .write(data)
+      .update(board)
       .then((respose) => {
         console.log(respose);
         setSubmitted(true);
@@ -111,14 +103,14 @@ const BoardUpdatePage = () => {
                     rows="10"
                   />
                 </div>
-                <button className="btn btn-success" onClick={saveBoard}>
-                  Save
+                <button className="btn btn-success" onClick={updateBoard}>
+                  업데이트
                 </button>
                 <button
                   className="btn btn-danger"
                   style={{ marginLeft: "10px" }}
                 >
-                  Cancel
+                  취소
                 </button>
               </div>
             </div>

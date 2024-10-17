@@ -20,9 +20,15 @@ const get = (id) => {
   return http.get(`/boards/${id}`);
 };
 
+const update = (data) => {
+  console.log(data);
+  return http.put("/boards/", data);
+};
+
 export default {
   getPagingList,
   remove,
   write,
   get,
+  update,
 };
