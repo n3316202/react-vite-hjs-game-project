@@ -55,7 +55,7 @@ const BoardUpdatePage = () => {
         <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
-              <h3 className="text-center mt-3">새글을 작성해주세요</h3>
+              <h3 className="text-center mt-3">업데이트도 할수 있어요</h3>
               <div className="card-body">
                 <div className="form-group">
                   <label> Type </label>

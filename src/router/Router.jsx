@@ -4,6 +4,7 @@ import LottoPage from "../components/pages/LottoPage";
 import RspPage from "../components/pages/RspPage";
 import BoardListPage from "../components/pages/BoardListPage";
 import BoardWritePage from "../components/pages/BoardWritePage";
+import BoardUpdatePage from "../components/pages/BoardUpdatePage";
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
         path: "/boards/write",
         loader: () => "글쓰기",
         element: <BoardWritePage />,
+      },
+      {
+        path: "/boards/:bid",
+        loader: () => "글업데이트",
+        element: <BoardUpdatePage />,
       },
     ],
   },
