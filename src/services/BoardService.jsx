@@ -14,8 +14,15 @@ const write = (data) => {
   return http.post("/boards/", data);
 };
 
+//글번호에 맞는 게시판글 가져오기
+const get = (id) => {
+  console.log(id);
+  return http.get(`/boards/${id}`);
+};
+
 export default {
   getPagingList,
   remove,
   write,
+  get,
 };

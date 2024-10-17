@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import boardService from "../../services/BoardService";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 const BoardUpdatePage = () => {
   const initBoardState = {
@@ -9,6 +9,12 @@ const BoardUpdatePage = () => {
     bcontent: "",
   };
 
+  // path: "/boards/:bid",
+  // loader: () => "글업데이트",
+  // element: <BoardUpdatePage />,
+
+  const { bid } = useParams();
+
   const [board, setBoard] = useState(initBoardState);
 
   //redirect를 위한 처리
@@ -16,9 +22,17 @@ const BoardUpdatePage = () => {
   const [submitted, setSubmitted] = useState(false);
 
   //처음 랜더링 하고, 한번만 타라
-  //useEffect(() => {
-  //  saveBoard();
-  //}, []);
+  useEffect(() => {
+    boardService
+      .get(bid)
+      .then((response) => {
+        console.log(response);
+        setBoard(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
