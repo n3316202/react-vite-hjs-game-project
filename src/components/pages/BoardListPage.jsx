@@ -127,7 +127,7 @@ const BoardListPage = () => {
               </table>
             </div>
             {/* 페이징           */}
-            {<Pagingnation></Pagingnation>}
+            {<Pagingnation paging={paging}></Pagingnation>}
             <hr />
             <Link to="/boards/write">
               <button type="button" className="btn btn-primary">
