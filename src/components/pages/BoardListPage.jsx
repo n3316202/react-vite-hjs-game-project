@@ -6,7 +6,7 @@ import Pagingnation from "../board/Pagingnation";
 const BoardListPage = () => {
   const [boards, setBoards] = useState([]);
   //http://192.168.0.10:8282/boards/list
-  const [paging, setPaging] = useState({});
+  const [paging, setPaging] = useState(null);
 
   // 정리하면 아래와 같다.
 
@@ -34,9 +34,9 @@ const BoardListPage = () => {
       .then((response) => {
         console.log(response);
         setBoards(response.data.boards);
+        setPaging(response.data.page);
 
         console.log(response.data.page);
-        setPaging(response.data.page);
       })
       .catch((e) => {
         console.log(e);
@@ -52,6 +52,26 @@ const BoardListPage = () => {
       .then((respose) => {
         console.log(respose);
         initBoards();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const onClickPaging = (e) => {
+    e.preventDefault();
+
+    console.log(e.target.pathname);
+    console.log(e.target.search);
+
+    boardService
+      .getPagingList(e.target.pathname, e.target.search)
+      .then((response) => {
+        setBoards(response.data.boards);
+        setPaging(response.data.page);
+
+        console.log(response.data.boards);
+        console.log(response.data.page);
       })
       .catch((e) => {
         console.log(e);
@@ -127,7 +147,12 @@ const BoardListPage = () => {
               </table>
             </div>
             {/* 페이징           */}
-            {<Pagingnation paging={paging}></Pagingnation>}
+            {paging != null ? (
+              <Pagingnation
+                paging={paging}
+                onClickPaging={onClickPaging}
+              ></Pagingnation>
+            ) : null}
             <hr />
             <Link to="/boards/write">
               <button type="button" className="btn btn-primary">
