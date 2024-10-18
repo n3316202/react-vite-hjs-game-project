@@ -5,6 +5,8 @@ import Pagingnation from "../board/Pagingnation";
 
 const BoardListPage = () => {
   const [boards, setBoards] = useState([]);
+  //http://192.168.0.10:8282/boards/list
+  const [paging, setPaging] = useState({});
 
   // 정리하면 아래와 같다.
 
