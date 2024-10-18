@@ -34,6 +34,9 @@ const BoardListPage = () => {
       .then((response) => {
         console.log(response);
         setBoards(response.data.boards);
+
+        console.log(response.data.page);
+        setPaging(response.data.page);
       })
       .catch((e) => {
         console.log(e);
