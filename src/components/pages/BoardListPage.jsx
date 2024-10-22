@@ -59,7 +59,7 @@ const BoardListPage = () => {
   };
 
   const onClickPaging = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 기존에 링크 동작을 하지 말아라
 
     console.log(e.target.pathname);
     console.log(e.target.search);
@@ -69,12 +69,9 @@ const BoardListPage = () => {
       .then((response) => {
         setBoards(response.data.boards);
         setPaging(response.data.page);
-
-        console.log(response.data.boards);
-        console.log(response.data.page);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
