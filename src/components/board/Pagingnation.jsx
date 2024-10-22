@@ -54,7 +54,7 @@ const Pagingnation = ({ paging, onClickPaging }) => {
 
   return (
     <nav aria-label="Page navigation example">
-      <ul className="pagination">
+      <ul className="pagination justify-content-center">
         {paging.prev == true && (
           <li className="page-item">
             <Link
