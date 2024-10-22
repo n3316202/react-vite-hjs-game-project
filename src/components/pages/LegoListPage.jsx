@@ -30,15 +30,7 @@ const LegoListPage = () => {
     const { name, value } = e.target;
     console.log(name + "::" + value);
 
-    boardService
-      .remove(value)
-      .then((respose) => {
-        console.log(respose);
-        initBoards();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    setBoards(boards.filter((board) => board.no !== value));
   };
 
   return (
