@@ -5,6 +5,7 @@ import RspPage from "../components/pages/RspPage";
 import BoardListPage from "../components/pages/BoardListPage";
 import BoardWritePage from "../components/pages/BoardWritePage";
 import BoardUpdatePage from "../components/pages/BoardUpdatePage";
+import LegoListPage from "../components/pages/LegoListPage";
 
 const routes = [
   {
@@ -50,6 +51,18 @@ const routes = [
         path: "/boards/:bid",
         loader: () => "글업데이트",
         element: <BoardUpdatePage />,
+      },
+    ],
+  },
+  {
+    path: "/lego",
+    element: <App />,
+    loader: () => "레고",
+    children: [
+      {
+        path: "/lego",
+        loader: () => "레고테이블",
+        element: <LegoListPage />,
       },
     ],
   },
