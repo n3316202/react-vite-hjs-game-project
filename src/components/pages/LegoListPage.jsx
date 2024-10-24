@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
 import boardService from "../../services/BoardService";
 import { Link } from "react-router-dom";
-import Pagingnation from "../board/Pagingnation";
 import axios from "axios";
+import LegoPagingnation from "../board/LegoPagingnation";
 
 const LegoListPage = () => {
   const url = "https://sample.bmaster.kro.kr/contacts?pageno=1&pagesize=10";
+
+  let initPaging = {
+    // ✔ 화면에 보여질 페이지 그룹
+    // ✔ 화면에 보여질 첫번째 페이지
+    // ✔ 화면에 보여질 마지막 페이지
+    // ✔ 총 페이지 수
+    startPage: 1,
+    endPage: 10,
+    total: 0,
+    prev: false,
+    next: false,
+    pageNum: 1,
+    amount: 10, //고정
+  };
+
   const [boards, setBoards] = useState([]);
+  const [paging, setPaging] = useState(initPaging);
 
   useEffect(() => {
     console.log("use Effective 실행");
@@ -19,7 +35,13 @@ const LegoListPage = () => {
       .then((response) => {
         console.log(response);
         setBoards(response.data.contacts);
-        console.log(response.data.contacts);
+
+        initPaging.pageNum = response.data.pageno;
+        initPaging.total = response.data.totalcount;
+        initPaging.endPage = initPaging.total / response.data.pagesize;
+        initPaging.startPage = 1; //endPage - 9;
+
+        setPaging(initPaging);
       })
       .catch((e) => {
         console.log(e);
@@ -31,6 +53,33 @@ const LegoListPage = () => {
     console.log(name + "::" + value);
 
     setBoards(boards.filter((board) => board.no !== value));
+  };
+
+  const onClickPaging = (e) => {
+    e.preventDefault(); // 기존에 링크 동작을 하지 말아라
+
+    console.log(e.target.text);
+
+    let url =
+      "https://sample.bmaster.kro.kr/contacts?pageno=" +
+      e.target.text +
+      "&pagesize=10";
+    axios
+      .get(url)
+      .then((response) => {
+        console.log(response);
+        setBoards(response.data.contacts);
+
+        initPaging.pageNum = response.data.pageno;
+        initPaging.total = response.data.totalcount;
+        initPaging.endPage = initPaging.total / response.data.pagesize;
+        initPaging.startPage = 1; //endPage - 9;
+
+        setPaging(initPaging);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -98,6 +147,14 @@ const LegoListPage = () => {
                 </tbody>
               </table>
             </div>
+            {/* 페이징           */}
+            {paging != null ? (
+              <LegoPagingnation
+                paging={paging}
+                onClickPaging={onClickPaging}
+              ></LegoPagingnation>
+            ) : null}
+
             <hr />
           </div>
         </div>
