@@ -19,33 +19,18 @@ import LegoReactComponentPagingnation from "../board/LegoReactComponentPagingnat
 
 const LegoListPage = () => {
   
-  const REQUEST_URL = 'https://sample.bmaster.kro.kr/contacts'
-
-  let initPaging = {
-    // ✔ 화면에 보여질 페이지 그룹
-    // ✔ 화면에 보여질 첫번째 페이지
-    // ✔ 화면에 보여질 마지막 페이지
-    // ✔ 총 페이지 수
-    startPage: 1,
-    endPage: 10,
-    total: 0,
-    prev: false,
-    next: false,
-    pageNum: 1,
-    amount: 10, //고정
-  };
+  const REQUEST_URL = 'https://sample.bmaster.kro.kr/contacts?'
 
   const [boards, setBoards] = useState([]);
-  const [paging, setPaging] = useState(initPaging);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [paging, setPaging] = useState(null);
 
   useEffect(() => {
     console.log("use Effective 실행");
     initBoards();
   }, []);
 
-  const initBoards = (pageno = "1", pagesize = "10") => {
-    setSearchParams(REQUEST_URL);
+  const initBoards =async (pageno = "1", pagesize = "10") => {
 
     searchParams.set("pageno", pageno);
     searchParams.set("pagesize", pagesize);
@@ -53,22 +38,16 @@ const LegoListPage = () => {
     
     console.log(searchParams.toString())
     
-    let url = REQUEST_URL +  searchParams.toString();
+    let url = REQUEST_URL + searchParams.toString();
     
     console.log(url)
 
-    axios
+    await axios
       .get(url)
       .then((response) => {
         console.log(response);
         setBoards(response.data.contacts);
-
-        initPaging.pageNum = response.data.pageno;
-        initPaging.total = response.data.totalcount;
-        initPaging.endPage = initPaging.total / response.data.pagesize;
-        initPaging.startPage = 1; //endPage - 9;
-
-        setPaging(initPaging);
+        setPaging(response.data)
       })
       .catch((e) => {
         console.log(e);
@@ -154,12 +133,12 @@ const LegoListPage = () => {
               </table>
             </div>
             {/* 페이징           */}
-            {paging != null ? (
+             {paging &&  (
               <LegoReactComponentPagingnation
                 paging={paging}
                 onClickPaging={onClickPaging}
-              ></LegoReactComponentPagingnation>
-            ) : null}
+              />
+            ) }
 
             <hr />
           </div>

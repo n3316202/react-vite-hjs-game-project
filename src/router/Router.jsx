@@ -6,6 +6,7 @@ import BoardListPage from "../components/pages/BoardListPage";
 import BoardWritePage from "../components/pages/BoardWritePage";
 import BoardUpdatePage from "../components/pages/BoardUpdatePage";
 import LegoListPage from "../components/pages/LegoListPage";
+import LegoListPage2 from "../components/pages/LegoListPage2";
 
 const routes = [
   {
@@ -62,7 +63,7 @@ const routes = [
       {
         path: "/lego",
         loader: () => "레고테이블",
-        element: <LegoListPage />,
+        element: <LegoListPage2 />,
       },
     ],
   },
