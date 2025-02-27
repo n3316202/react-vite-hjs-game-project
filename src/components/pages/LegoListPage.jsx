@@ -4,6 +4,19 @@ import axios from "axios";
 import LegoReactComponentPagingnation from "../board/LegoReactComponentPagingnation";
 
 
+// 프로젝트마다 용어는 달라질 수 있다
+// offset -> start
+// limit -> size
+
+// 페이지네이션 구현
+// 🧨🧨🧨 순서
+// 접속 URL : "list?offset=10&limit=10"
+// -> URL의 정보를 useSearchParams() 훅 이용해서 가져오고
+// -> offset과 limit 변수에 값을 저장해줌
+// -> fetch에 백엔드 API 호출하는 _start와 _limit의 값으로 위 두 변수 값을 넣어주고
+// -> 불러온 값을 posts state에 저장한다.
+// -> posts 데이터를 이용해서 map 리렌더링!!
+
 const LegoListPage = () => {
   
   const REQUEST_URL = 'https://sample.bmaster.kro.kr/contacts'
@@ -24,6 +37,7 @@ const LegoListPage = () => {
 
   const [boards, setBoards] = useState([]);
   const [paging, setPaging] = useState(initPaging);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     console.log("use Effective 실행");
@@ -31,10 +45,11 @@ const LegoListPage = () => {
   }, []);
 
   const initBoards = (pageno = "1", pagesize = "10") => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    setSearchParams(REQUEST_URL);
 
     searchParams.set("pageno", pageno);
     searchParams.set("pagesize", pagesize);
+    setSearchParams(searchParams);
     
     console.log(searchParams.toString())
     
