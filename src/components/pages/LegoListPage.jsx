@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import boardService from "../../services/BoardService";
-import { Link } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
-import LegoPagingnation from "../board/LegoPagingnation";
 import LegoReactComponentPagingnation from "../board/LegoReactComponentPagingnation";
 
+
 const LegoListPage = () => {
+  
+  const REQUEST_URL = 'https://sample.bmaster.kro.kr/contacts'
+
   let initPaging = {
     // ✔ 화면에 보여질 페이지 그룹
     // ✔ 화면에 보여질 첫번째 페이지
@@ -28,12 +30,17 @@ const LegoListPage = () => {
     initBoards();
   }, []);
 
-  const initBoards = (pageno = "1") => {
+  const initBoards = (pageno = "1", pagesize = "10") => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    searchParams.set("pageno", pageno);
+    searchParams.set("pagesize", pagesize);
     
-    let url =
-      "https://sample.bmaster.kro.kr/contacts?pageno=" +
-      pageno +
-      "&pagesize=10";
+    console.log(searchParams.toString())
+    
+    let url = REQUEST_URL +  searchParams.toString();
+    
+    console.log(url)
 
     axios
       .get(url)

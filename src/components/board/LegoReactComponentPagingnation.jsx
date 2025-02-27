@@ -65,8 +65,6 @@ import Pagination from 'react-bootstrap/Pagination';
 const LegoReactComponentPagingnation = () => {
   
   
-
-
   return (
     <Pagination>
       <Pagination.First />
