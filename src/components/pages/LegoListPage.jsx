@@ -3,6 +3,7 @@ import boardService from "../../services/BoardService";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LegoPagingnation from "../board/LegoPagingnation";
+import LegoReactComponentPagingnation from "../board/LegoReactComponentPagingnation";
 
 const LegoListPage = () => {
   let initPaging = {
@@ -132,10 +133,10 @@ const LegoListPage = () => {
             </div>
             {/* 페이징           */}
             {paging != null ? (
-              <LegoPagingnation
+              <LegoReactComponentPagingnation
                 paging={paging}
                 onClickPaging={onClickPaging}
-              ></LegoPagingnation>
+              ></LegoReactComponentPagingnation>
             ) : null}
 
             <hr />
