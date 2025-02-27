@@ -28,10 +28,12 @@ const LegoListPage = () => {
   }, []);
 
   const initBoards = (pageno = "1") => {
+    
     let url =
       "https://sample.bmaster.kro.kr/contacts?pageno=" +
       pageno +
       "&pagesize=10";
+
     axios
       .get(url)
       .then((response) => {
