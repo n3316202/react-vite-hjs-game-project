@@ -21,7 +21,9 @@ const LegoListPage2 = () => {
   const [state, setState] = useState({
     contacts: [],
     limit: 10,
-    activePage: 1
+    activePage: 1,
+    prev : function(){}, //< 표시시
+
   });
 
   //https://sample.bmaster.kro.kr/contacts?pageno=11&pagesize=10
