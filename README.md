@@ -1,8 +1,10 @@
-# React + Vite
+### 1. 프로젝트 생성및 기본 환경 설정
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> npm create vite@latest react-hjs-lion-game-project
 
-Currently, two official plugins are available:
+### 2. 라이브러리 다운로드 후 실행
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> npm i<br>
+> npm run dev
+
+### 3. 프리티어 설정
